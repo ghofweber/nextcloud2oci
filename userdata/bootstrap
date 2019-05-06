@@ -1,0 +1,10 @@
+#!/bin/bash
+sudo yum update -y
+sudo yum  install -y wget unzip tar xz curl ipset ntp
+sudo groupadd nogroup
+sudo systemctl stop firewalld && sudo systemctl disable firewalld
+sudo systemctl stop dnsmasq && sudo systemctl disable dnsmasq.service
+sudo sed -i 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
+# block countries via ipset
+# sudo blockcntr.sh
+sudo yum install iptables-persistent
